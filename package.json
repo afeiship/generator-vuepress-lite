@@ -1,0 +1,83 @@
+{
+  "name": "generator-vuepress-lite",
+  "version": "1.0.0",
+  "description": "Just a vuepress lite version.",
+  "homepage": "https://github.com/afeiship/generator-vuepress-lite",
+  "author": {
+    "name": "afei",
+    "email": "1290657123@qq.com",
+    "url": "https://github.com/afeiship"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "vuepress",
+    "docs",
+    "lite",
+    "yo",
+    "yeoman",
+    "scaffold",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-xo": "^0.25.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "glob": "^7.1.3",
+    "husky": "^1.2.0",
+    "jest": "^23.5.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.16.4",
+    "replace-in-file": "^3.4.4",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
+    "yeoman-remote": "^1.0.1",
+    "yeoman-test": "^1.7.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest"
+  },
+  "repository": "git@github.com:afeiship/generator-vuepress-lite.git",
+  "license": "MIT"
+}
