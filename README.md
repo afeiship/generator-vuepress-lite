@@ -13,3 +13,6 @@ npm link
 ```shell
 yo vuepress-lite
 ```
+
+## License
+MIT © [afei](https://github.com/afeiship)
