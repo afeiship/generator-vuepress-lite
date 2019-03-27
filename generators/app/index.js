@@ -70,7 +70,6 @@ module.exports = class extends Generator {
     if (hasPkgJson){
       const destPkg = require(`${destPath}/package.json`);
       destPkg.scripts = Object.assign(destPkg.scripts, boilerplatePkg.scripts);
-      console.log('dest pkg json:->', destPkg);
       fs.writeFileSync(`${destPath}/package.json`, JSON.stringify(destPkg, null, 2))
     }else{
       fs.writeFileSync(`${destPath}/docs/docs-scripts.json`, JSON.stringify(boilerplatePkg.scripts, null,2))
