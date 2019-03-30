@@ -53,7 +53,7 @@ module.exports = class extends Generator {
         // copy files:
         self.cachePath = cachePath;
         this.fs.copy(
-          glob.sync(resolve(cachePath, '{docs/*,docs/.*,deploy.sh}')),
+          glob.sync(resolve(cachePath, '{docs/*,docs/.*,bin/*}')),
           this.destinationPath()
         );
         done();
@@ -64,7 +64,7 @@ module.exports = class extends Generator {
   end() {
     const { project_name, description, ProjectName } = this.props;
     const destPath = this.destinationPath();
-    const files = glob.sync(resolve(destPath, '{docs/*,docs/.*,deploy.sh}'));
+    const files = glob.sync(resolve(destPath, '{docs/*,docs/.*,bin/*}'));
     const boilerplatePkg = require(resolve(this.cachePath, './package.json'));
     const hasPkgJson = fs.existsSync(`${destPath}/package.json`);
     if (hasPkgJson){
