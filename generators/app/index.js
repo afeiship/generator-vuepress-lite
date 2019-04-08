@@ -12,13 +12,7 @@ const fs = require('fs');
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(
-      yosay(
-        `Welcome to the stunning ${chalk.red(
-          'generator-vuepress-lite'
-        )} generator!`
-      )
-    );
+    this.log(yosay(`Welcome to the stunning ${chalk.red('generator-vuepress-lite')} generator!`));
 
     const prompts = [
       {
@@ -53,7 +47,7 @@ module.exports = class extends Generator {
         // copy files:
         self.cachePath = cachePath;
         this.fs.copy(
-          glob.sync(resolve(cachePath, '{docs/*,docs/.*,bin/*}')),
+          glob.sync(resolve(cachePath, '{docs/*,docs/.*,.bin/*}')),
           this.destinationPath()
         );
         done();
@@ -64,23 +58,22 @@ module.exports = class extends Generator {
   end() {
     const { project_name, description, ProjectName } = this.props;
     const destPath = this.destinationPath();
-    const files = glob.sync(resolve(destPath, '{docs/*,docs/.*,bin/*}'));
+    const files = glob.sync(resolve(destPath, '{docs/*,docs/.*,.bin/*}'));
     const boilerplatePkg = require(resolve(this.cachePath, './package.json'));
     const hasPkgJson = fs.existsSync(`${destPath}/package.json`);
-    if (hasPkgJson){
+    if (hasPkgJson) {
       const destPkg = require(`${destPath}/package.json`);
       destPkg.scripts = Object.assign(destPkg.scripts, boilerplatePkg.scripts);
-      fs.writeFileSync(`${destPath}/package.json`, JSON.stringify(destPkg, null, 2))
-    }else{
-      fs.writeFileSync(`${destPath}/docs/docs-scripts.json`, JSON.stringify(boilerplatePkg.scripts, null,2))
+      fs.writeFileSync(`${destPath}/package.json`, JSON.stringify(destPkg, null, 2));
+    } else {
+      fs.writeFileSync(
+        `${destPath}/docs/docs-scripts.json`,
+        JSON.stringify(boilerplatePkg.scripts, null, 2)
+      );
     }
     replace.sync({
       files,
-      from: [
-        /boilerplate-vuepress-description/g,
-        /boilerplate-vuepress/g,
-        /BoilerplateVuepress/g
-      ],
+      from: [/boilerplate-vuepress-description/g, /boilerplate-vuepress/g, /BoilerplateVuepress/g],
       to: [description, project_name, ProjectName]
     });
   }
